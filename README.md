@@ -1,5 +1,5 @@
 # spinner
-POSIX compatible spinner function with colors and Unicode graphics.
+POSIX compatible spinner function with colors and Unicode (more like Fun-icode, am I right?) graphics.
 
 It currently supports and is regularly tested on reasonably modern bash, dash, and zsh, as well as Linux and Windows terminals. 
 
