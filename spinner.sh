@@ -28,6 +28,7 @@ UNI_QTR_CIRCLE="◜ ◝ ◞ ◟"
 SYMBOLS=$UNI_BRAILLE2
 
 while :; do
+  tput civis
   for c in ${SYMBOLS}; do
     if [ $COLORNUM -eq 7 ]; then
       COLORNUM=1
@@ -39,4 +40,5 @@ while :; do
     [ -f results ] && { printf '\n'; break 2; }
     env sleep .4
   done
+  tput cnorm
 done
