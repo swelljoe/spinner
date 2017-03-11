@@ -35,7 +35,7 @@ while :; do
       COLORNUM=$((COLORNUM+1))
     fi
     COLOR=$(tput setaf ${COLORNUM})
-    printf '\b%s' "${COLOR}$c${NORMAL}" 
+    printf '%s\b' "${COLOR}$c${NORMAL}" 
     [ -f results ] && { printf '\n'; break 2; }
     env sleep .4
   done
