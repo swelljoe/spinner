@@ -6,3 +6,5 @@ A simple to use spinner with asynchronous behavior (start a process, run your sp
 There are ASCII spinner designs that are pretty much expected to work on any terminal and POSIX-y shell, and then there are Unicode spinner designs that likely need a modern-ish terminal and shell. I've used a few tricks to make it workaround older shells, in some cases, so it sometimes works even when it's not expected to based on the features of the shell.
 
 Docs coming soon. I just wanted to get it committed so I could try it across all of my test machines.
+
+It is also not currently very configurable and isn't wrapped in a function, yet. Variables also need to be more tightly scoped. For now, you can change the SYMBOLS variable to choose which spinner design to use.
