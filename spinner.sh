@@ -1,6 +1,4 @@
 
-COLORNUM=1
-NORMAL=$(tput sgr0)
 # Safest option are one of these. Doesn't need Unicode, at all.
 ASCII_LINE="/ - \\ \|"
 ASCII_PLUS="x +"
@@ -26,17 +24,24 @@ UNI_CIRCLE="◐ ◓ ◑ ◒"
 UNI_QTR_CIRCLE="◜ ◝ ◞ ◟" 
 
 SYMBOLS=$UNI_BRAILLE2
+COLORNUM=3
+NORMAL=$(tput sgr0)
+COLORCYCLE=0
 
 while :; do
   tput civis
   for c in ${SYMBOLS}; do
-    if [ $COLORNUM -eq 7 ]; then
-      COLORNUM=1
-    else
-      COLORNUM=$((COLORNUM+1))
+    if [ $COLORCYCLE -eq 1 ]; then
+      if [ $COLORNUM -eq 7 ]; then
+        COLORNUM=1
+      else
+        COLORNUM=$((COLORNUM+1))
+      fi
     fi
     COLOR=$(tput setaf ${COLORNUM})
-    env printf '%s\b' "${COLOR}$c${NORMAL}" 
+    tput sc
+    env printf "${COLOR}${c}${NORMAL}"
+    tput rc
     [ -f results ] && { printf '\n'; break 2; }
     env sleep .4
   done
