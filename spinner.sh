@@ -8,7 +8,6 @@ spinner () {
   # Safest option are one of these. Doesn't need Unicode, at all.
   local ASCII_LINE="/ - \\ \|"
   local ASCII_PLUS="x +"
-  local ASCII_SPLAT='. o O @ \*'
   local ASCII_BLINK="o -"
   local ASCII_V="v < ^ >"
   local ASCII_INFLATE=". o O o"
@@ -52,6 +51,8 @@ spinner () {
 	rm ${SPINNER_DONEFILE}
 	break 2
       fi
+      # This is questionable. sleep with fractional seconds is not
+      # always available, but seems to not break things, when not.
       env sleep .4
     done
   done
