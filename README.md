@@ -7,13 +7,13 @@ A simple to use spinner with asynchronous behavior (start a process, run your sp
 
 There are ASCII spinner designs that are pretty much expected to work on any terminal and POSIX-y shell, and then there are Unicode spinner designs that likely need a modern-ish terminal and shell. I've used a few tricks to make it workaround older shells (by using the system printf command instead of the printf shell built-in), in some cases, so it sometimes works even when it's not expected to based on the features of the shell (but there's no way to workaround a terminal that doesn't support Unicode).
 
-# What it looks
+# What it Looks Like
 
 ![spinner in action](http://i.imgur.com/QFlrbWo.gif)
 
 # Using spinner
 
-Source it, using '. ./spinner.sh', and then optionally configure it with the available config variables (SPINNER_COLORNUM, SPINNER_COLORCYCLE, SPINNER_DONEFILE, SPINNER_SYMBOLS).
+Source it, using '. ./spinner.sh', and then optionally configure it with the available config variables (SPINNER_COLORNUM, SPINNER_COLORCYCLE, SPINNER_DONEFILE, SPINNER_SYMBOLS). See the source for all of the SPINNER_SYMBOLS options; there are a bunch of ASCII and Unicode options.
 
 ```bash
 #!/bin/sh
@@ -32,9 +32,9 @@ touch stopspinning # Tell spinner we're done. This file will be removed by spinn
 
 # Tricky Bits
 
-Older shells and terminals may choke on any Unicode spinners...so, use ASCII symbol sets if you need to run on old systems. I'm targeting CentOS 6 and up, Ubuntu 12.04 and up, and Debian 7 and up, and test periodically on them all. I need it to run across a pretty wide spectrum of terminals, as well, so I'm checking it on Windows (Putty, git bash, WSL bash, Cygwin bash) and a few Linux terminals.
+Older shells and terminals may choke on any Unicode spinners...so, use ASCII symbol sets if you need to run on old systems. I'm targeting CentOS 6 and up, Ubuntu 12.04 and up, and Debian 7 and up, and test periodically on them all. I need it to run across a pretty wide spectrum of terminals, as well, so I'm checking it on Windows (PuTTY, git bash, WSL bash, Cygwin bash) and a few Linux terminals. I'm also testing on FreeBSD CURRENT when I can make it run long enough (it crashes every minute or two on my VirtualBox install...no idea why, but freebsd-update fails, so I just assume it is broken forever).
 
-The native Windows terminals (CMD.exe and Powershell) don't seem to correctly work correctly for cursor placement, colors, or Unicode, and I don't have any clue how to fix them...suggestions welcome. I believe the behavior I'm seeing means they are not providing correct termcap info for tput to work with, but I am not at all an expert.
+The native Windows terminals (CMD.exe and Powershell) don't seem to correctly work correctly for cursor placement, colors, or Unicode, and I don't have any clue how to fix them...suggestions welcome. I believe the behavior I'm seeing means they are not providing correct termcap info for tput to work with, but I am not at all an expert. But, PuTTY and every bash version for Windows I tested works fine, including Unicode and colors. 
 
 I don't have a Mac, but, as I understand it, it does provide correct termcap info for tput, so colors should work. I'm guessing that Unicode will work, as well, but someone will need to test it, and let me know, to be sure.
 
