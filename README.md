@@ -9,7 +9,7 @@ There are ASCII spinner designs that are pretty much expected to work on any ter
 
 # What it looks
 
-![spinner in action](http://i.imgur.com/QFlrbWo.gifv)
+![spinner in action](http://i.imgur.com/QFlrbWo.gif)
 
 # Using spinner
 
