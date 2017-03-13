@@ -6,7 +6,7 @@ printf "Spinner with default settings for five seconds: "
 spinner &
 sleep 5
 touch "stopspinning"
-
+printf "\n"
 sleep 1
 
 SPINNER_COLORCYCLE=0
@@ -17,5 +17,5 @@ printf "Spinner with some custom settings for five seconds: "
 spinner &
 sleep 5
 touch "donespinning"
-
+printf "\n"
 sleep 1
