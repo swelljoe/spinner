@@ -28,7 +28,7 @@ spinner () {
   local UNI_CIRCLE="◐ ◓ ◑ ◒"
   local UNI_QTR_CIRCLE="◜ ◝ ◞ ◟" 
 
-  local NORMAL=$(tput sgr0)
+  local SPINNER_NORMAL=$(tput sgr0)
 
   eval SYMBOLS=\$${SPINNER_SYMBOLS}
 
@@ -44,7 +44,7 @@ spinner () {
       fi
       local COLOR=$(tput setaf ${SPINNER_COLORNUM})
       tput sc
-      env printf "${COLOR}${c}${NORMAL}"
+      env printf "${COLOR}${c}${SPINNER_NORMAL}"
       tput rc
       if [ -f "${SPINNER_DONEFILE}" ]; then
         tput el
