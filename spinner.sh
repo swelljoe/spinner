@@ -48,7 +48,6 @@ spinner () {
       tput rc
       if [ -f "${SPINNER_DONEFILE}" ]; then
         tput el
-        printf '\n'
 	rm ${SPINNER_DONEFILE}
 	break 2
       fi
