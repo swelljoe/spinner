@@ -7,6 +7,10 @@ A simple to use spinner with asynchronous behavior (start a process, run your sp
 
 There are ASCII spinner designs that are pretty much expected to work on any terminal and POSIX-y shell, and then there are Unicode spinner designs that likely need a modern-ish terminal and shell. I've used a few tricks to make it workaround older shells (by using the system printf command instead of the printf shell built-in), in some cases, so it sometimes works even when it's not expected to based on the features of the shell (but there's no way to workaround a terminal that doesn't support Unicode).
 
+# What it looks
+
+![spinner in action](http://i.imgur.com/QFlrbWo.gifv)
+
 # Using spinner
 
 Source it, using '. ./spinner.sh', and then optionally configure it with the available config variables (SPINNER_COLORNUM, SPINNER_COLORCYCLE, SPINNER_DONEFILE, SPINNER_SYMBOLS).
