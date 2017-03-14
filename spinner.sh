@@ -7,7 +7,7 @@ SPINNER_CLEAR=1 # Blank the line when done.
 
 spinner () {
   # Safest option are one of these. Doesn't need Unicode, at all.
-  local ASCII_LINE="/ - \\ |"
+  local ASCII_PROPELLER="/ - \\ |"
   local ASCII_PLUS="x +"
   local ASCII_BLINK="o -"
   local ASCII_V="v < ^ >"
