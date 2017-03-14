@@ -9,7 +9,9 @@ There are ASCII spinner designs that are pretty much expected to work on any ter
 
 # What it Looks Like
 
-![spinner in action](http://i.imgur.com/QFlrbWo.gif)
+![spinner in action](http://i.imgur.com/gquCDSi.gif)
+
+The above is all of the symbol designs that work with the shell, terminal, and font I'm using. There are a few others borrowed from some other spinner libs out there in other languages, but I doubt they'll be useful until the codepoints are more widely available. It takes a couple of minutes to loop through them all.
 
 Or, combined with another function I wrote for running commands in an install script with nice output:
 
