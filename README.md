@@ -11,6 +11,10 @@ There are ASCII spinner designs that are pretty much expected to work on any ter
 
 ![spinner in action](http://i.imgur.com/QFlrbWo.gif)
 
+Or, combined with another function I wrote for running commands in an install script with nice output:
+
+![spinner and run_ok](http://i.imgur.com/7gcOilK.gif)
+
 # Using spinner
 
 Source it, using '. ./spinner.sh', and then optionally configure it with the available config variables (SPINNER_COLORNUM, SPINNER_COLORCYCLE, SPINNER_DONEFILE, SPINNER_SYMBOLS). See the source for all of the SPINNER_SYMBOLS options; there are a bunch of ASCII and Unicode options.
