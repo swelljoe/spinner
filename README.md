@@ -29,7 +29,11 @@ Source it, using '. ./spinner.sh', and then optionally configure it with the ava
 SPINNER_SYMBOLS="ASCII_PLUS" # This will be derefed to $ASCII_PLUS, which is a predefined list of symbols
 
 # Create a new job for spinner, so you can keep doing work.
+# Or, you can fork your task first, but you'll need to handle killing spinner as part of it,
+# if you go that route.
 spinner &
+# You may need to wrap spinner in parens...I'm not sure why it needs it sometimes. e.g.:
+#(spinner &)
 # Do your work here...redirect output to a log or /dev/null, so user only sees spinner.
 long_running_task > /dev/null 2>&1 # Output thrown away; a log is probably a better destination.
 
