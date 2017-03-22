@@ -7,6 +7,8 @@ A simple to use spinner with asynchronous behavior (start a process, run your sp
 
 There are ASCII spinner designs that are pretty much expected to work on any terminal and POSIX-y shell, and then there are Unicode spinner designs that likely need a modern-ish terminal and shell. I've used a few tricks to make it workaround older shells (by using the system printf command instead of the printf shell built-in), in some cases, so it sometimes works even when it's not expected to based on the features of the shell (but there's no way to workaround a terminal that doesn't support Unicode).
 
+The most complete typeface I know of is [DejaVu Mono](https://dejavu-fonts.github.io/), which is free and Open Source, and very nice looking, in general. It supports all of the code points currently used in spinner.
+
 # What it Looks Like
 
 ![spinner in action](http://i.imgur.com/gquCDSi.gif)
@@ -29,7 +31,11 @@ Source it, using '. ./spinner.sh', and then optionally configure it with the ava
 SPINNER_SYMBOLS="ASCII_PLUS" # This will be derefed to $ASCII_PLUS, which is a predefined list of symbols
 
 # Create a new job for spinner, so you can keep doing work.
+# Or, you can fork your task first, but you'll need to handle killing spinner as part of it,
+# if you go that route.
 spinner &
+# You may need to wrap spinner in parens...I'm not sure why it needs it sometimes. e.g.:
+#(spinner &)
 # Do your work here...redirect output to a log or /dev/null, so user only sees spinner.
 long_running_task > /dev/null 2>&1 # Output thrown away; a log is probably a better destination.
 
