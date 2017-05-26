@@ -85,6 +85,7 @@ spinner () {
       if [ ! -z "$SPINNER_PPID" ]; then
         # This is ridiculous. ps prepends a space in the ppid call, which breaks
         # this ps with a "garbage option" error.
+        # XXX Potential gotcha if ps produces weird output.
         # shellcheck disable=SC2086
         SPINNER_PARENTUP=$(ps --no-headers $SPINNER_PPID)
         if [ -z "$SPINNER_PARENTUP" ]; then
