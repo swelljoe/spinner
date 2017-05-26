@@ -39,7 +39,7 @@ echo "Single character ASCII spinners"
 for s in ASCII_PROPELLER ASCII_PLUS ASCII_BLINK ASCII_INFLATE ASCII_V; do
   run_test ${s}
 done
- 
+
 clear
 echo "Single character Unicode spinners"
 for s in UNI_DOTS UNI_DOTS2 UNI_DOTS3 UNI_DOTS4 UNI_DOTS5 UNI_DOTS6 UNI_DOTS7 UNI_DOTS8 UNI_DOTS9 UNI_DOTS10 UNI_DOTS11 UNI_DOTS12 UNI_BOUNCE UNI_PIPES UNI_ARROW_ROT; do
@@ -54,6 +54,6 @@ done
 
 clear
 echo "Wide Unicode spinners"
-for s in WIDE_UNI_GREYSCALE; do
+for s in WIDE_UNI_GREYSCALE WIDE_UNI_GREYSCALE2; do
   run_test ${s}
 done

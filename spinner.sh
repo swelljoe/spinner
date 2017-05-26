@@ -1,3 +1,5 @@
+#!/bin/sh
+# shellcheck disable=SC2034 disable=SC2039
 # Config variables, set these after sourcing to change behavior.
 SPINNER_COLORNUM=2 # What color? Irrelevent if COLORCYCLE=1.
 SPINNER_COLORCYCLE=1 # Does the color cycle?
@@ -38,7 +40,7 @@ spinner () {
   local UNI_BOX_BOUNCE="▖ ▘ ▝ ▗"
   local UNI_PIE="◴ ◷ ◶ ◵"
   local UNI_CIRCLE="◐ ◓ ◑ ◒"
-  local UNI_QTR_CIRCLE="◜ ◝ ◞ ◟" 
+  local UNI_QTR_CIRCLE="◜ ◝ ◞ ◟"
 
   # Bigger spinners and progress type bars; takes more space.
   local WIDE_ASCII_PROG="[>----] [=>---] [==>--] [===>-] [====>] [----<] [---<=] [--<==] [-<===] [<====]"
@@ -47,10 +49,12 @@ spinner () {
   local WIDE_UNI_GREYSCALE="░░░░░░░ ▒░░░░░░ ▒▒░░░░░ ▒▒▒░░░░ ▒▒▒▒░░░ ▒▒▒▒▒░░ ▒▒▒▒▒▒░ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒░ ▒▒▒▒▒░░ ▒▒▒▒░░░ ▒▒▒░░░░ ▒▒░░░░░ ▒░░░░░░ ░░░░░░░"
   local WIDE_UNI_GREYSCALE2="░░░░░░░ ▒░░░░░░ ▒▒░░░░░ ▒▒▒░░░░ ▒▒▒▒░░░ ▒▒▒▒▒░░ ▒▒▒▒▒▒░ ▒▒▒▒▒▒▒ ░▒▒▒▒▒▒ ░░▒▒▒▒▒ ░░░▒▒▒▒ ░░░░▒▒▒ ░░░░░▒▒ ░░░░░░▒"
 
-  local SPINNER_NORMAL=$(tput sgr0)
+  SPINNER_NORMAL=$(tput sgr0)
 
   eval SYMBOLS=\$${SPINNER_SYMBOLS}
 
+  # Get the parent PID
+  SPINNER_PPID=$(ps -p "$$" -o ppid=)
   while :; do
     tput civis
     for c in ${SYMBOLS}; do
@@ -61,7 +65,8 @@ spinner () {
           SPINNER_COLORNUM=$((SPINNER_COLORNUM+1))
         fi
       fi
-      local COLOR=$(tput setaf ${SPINNER_COLORNUM})
+      local COLOR
+      COLOR=$(tput setaf ${SPINNER_COLORNUM})
       tput sc
       env printf "${COLOR}${c}${SPINNER_NORMAL}"
       tput rc
@@ -69,12 +74,22 @@ spinner () {
         if [ ${SPINNER_CLEAR} -eq 1 ]; then
           tput el
         fi
-	rm ${SPINNER_DONEFILE}
-	break 2
+        rm ${SPINNER_DONEFILE}
+        break 2
       fi
       # This is questionable. sleep with fractional seconds is not
       # always available, but seems to not break things, when not.
       env sleep .2
+      # Check to be sure parent is still going; handles sighup/kill
+      if [ ! -z "$SPINNER_PPID" ]; then
+        # This is ridiculous. ps prepends a space in the ppid call, which breaks
+        # this ps with a "garbage option" error.
+        # shellcheck disable=SC2086
+        SPINNER_PARENTUP=$(ps --no-headers $SPINNER_PPID)
+        if [ -z "$SPINNER_PARENTUP" ]; then
+          break 2
+        fi
+      fi
     done
   done
   tput cnorm
