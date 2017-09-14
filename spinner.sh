@@ -7,6 +7,15 @@ SPINNER_DONEFILE="stopspinning" # Path/name of file to exit on.
 SPINNER_SYMBOLS="UNI_DOTS2" # Name of the variable containing the symbols.
 SPINNER_CLEAR=1 # Blank the line when done.
 
+# Handle signals
+cleanup () {
+	tput rc
+	tput cnorm
+	return 1
+}
+# This tries to catch any exit, to reset cursor
+trap cleanup INT QUIT TERM
+
 spinner () {
   # Safest option are one of these. Doesn't need Unicode, at all.
   local ASCII_PROPELLER="/ - \\ |"
